@@ -1,0 +1,18 @@
+body {
+    background-color: #f8f9fa;
+}
+.error-container {
+    margin-top: 50px;
+}
+.error-heading {
+    color: #dc3545;
+    font-size: 72px;
+    font-weight: bold;
+}
+.error-message {
+    color: #343a40;
+    font-size: 24px;
+}
+.error-link {
+    color: #007bff;
+}
