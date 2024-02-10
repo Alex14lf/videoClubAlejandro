@@ -1,15 +1,52 @@
 <?php
+    class Usuario {
+        private $id;
+        private $username;
+        private $password;
+        private $rol;
+        
+        public function __construct($id, $username, $password, $rol) {
+            $this->id = $id;
+            $this->username = $username;
+            $this->password = $password;
+            $this->rol = $rol;
+        }
+        public function getId() {
+            return $this->id;
+        }
+         public function setId($id): void {
+            $this->id = $id;
+        }
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/PHPClass.php to edit this template
- */
+        public function getUsername() {
+            return $this->username;
+        }
+        public function setUsername($username): void {
+            $this->username = $username;
+        }
 
-/**
- * Description of usuario
- *
- * @author alex1
- */
-class usuario {
-    //put your code here
-}
+        public function getPassword() {
+            return $this->password;
+        }
+        
+         public function setPassword($password): void {
+            $this->password = $password;
+        }
+        
+        public function getRol() {
+            return $this->rol;
+        }
+        
+        public function setRol($rol): void {
+            $this->rol = $rol;
+        }
+        
+        public function __destruct() {
+
+        }
+
+    }
+    
+?>
+
+

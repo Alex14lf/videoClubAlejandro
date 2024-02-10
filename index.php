@@ -10,14 +10,14 @@
     <body>
         <div class="container">
             <h2 class="text-center mb-4">Iniciar Sesión</h2>
-            <form>
+            <form action="./pages/validateLogin.php" method="POST">
                 <div class="mb-3">
                     <label for="user" class="form-label">Usuario</label>
-                    <input type="text" class="form-control" id="user" placeholder="Usuario" required>
+                    <input type="text" class="form-control" id="user" name="user" placeholder="Usuario" required>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="password" placeholder="Contraseña" required>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required>
                 </div>
                 <button type="submit" class="btn btn-danger btn-block">Iniciar Sesión</button>
             </form>
