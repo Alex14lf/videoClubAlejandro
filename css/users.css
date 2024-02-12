@@ -1,0 +1,41 @@
+body {
+    background-color: #f8f9fa;
+}
+.navbar-brand {
+    font-size: 1.5rem;
+}
+.container {
+    margin-top: 50px;
+}
+.card {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+}
+.card-table {
+    display: table;
+    width: 100%;
+}
+.card-table-row {
+    display: table-row;
+}
+.card-table-cell {
+    display: table-cell;
+    padding: 8px;
+    border-bottom: 1px solid #dee2e6;
+}
+.card-table-heading {
+    font-weight: bold;
+}
+.actor-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 5px;
+}
+.cartel-image {
+    width: 100px;
+    height: auto;
+    border-radius: 5px;
+}

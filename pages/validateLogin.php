@@ -16,16 +16,17 @@ if (!$passwordIntroducida || !$usuarioIntroducido) {
 }
 
 if (checkUser($user, $password)) {
-    $_SESSION["user"] = $user;
-    $_SESSION["password"] = $password;
     $userObject = createUserObject($user);
     $rol=$userObject->getRol();
+    $_SESSION["user"] = $user;
+    $_SESSION["password"] = $password;
+    $_SESSION["rol"] = $rol;
     if ($rol == 1) {
         echo"ADMIN";
-        //header("Location:");
+        header("Location:admin.php");
     } else if ($rol == 0) {
         echo 'USER';
-        //header("Location:");
+        header("Location:users.php");
     };
 } else {
     header("Location:../index.php?login=incorrecto");

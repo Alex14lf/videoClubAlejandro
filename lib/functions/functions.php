@@ -1,7 +1,7 @@
 <?php
 
 include '../lib/model/usuario.php';
-function ConectarBd() {
+function conectBd() {
     $cadena_conexion = 'mysql:dbname=videoclubonline;host=127.0.0.1';
     $usuario = 'root';
     $clave = '';
@@ -18,7 +18,7 @@ function ConectarBd() {
 function checkUser($username, $password) {
     $hashpassword = hash("sha256", $password);
     try {
-        $bd = ConectarBd();
+        $bd = conectBd();
         $consulta = $bd->prepare("SELECT * from usuarios WHERE username=:username AND password=:password");
         $consulta->execute(array(":username" => $username, ":password" => $hashpassword));
         foreach ($consulta as $fila) { //ENTRA SOLO SI EXISTE EL USUARIO Y CONTRASEÑA
@@ -37,7 +37,7 @@ function checkUser($username, $password) {
 function createUserObject($username) {
     
     try {
-        $bd = ConectarBd();
+        $bd = conectBd();
         $consulta = $bd->prepare("SELECT * from usuarios WHERE username=:username");
         $consulta->execute(array(":username" => $username));
         foreach ($consulta as $fila) { //ENTRA SOLO SI EXISTE EL USUARIO 
