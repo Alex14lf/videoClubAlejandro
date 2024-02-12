@@ -62,10 +62,6 @@ if (!isset($_SESSION["user"]) && !isset($_SESSION["password"])) {
                                 ?>
 
                             </div>
-                            <div class="card-table-cell">
-                                <button class="btn btn-danger">Eliminar</button>
-                                <button class="btn btn-warning mt-1">Modificar</button>
-                            </div>
                         </div>
                         <?php
                     }
