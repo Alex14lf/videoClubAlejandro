@@ -107,7 +107,7 @@ if (!isset($_SESSION["user"]) && !isset($_SESSION["password"])) {
                             <div class="card-table-cell"><?php echo $pelicula->getTitulo()?></div>
                             <div class="card-table-cell"><?php echo $pelicula->getGenero()?></div>
                             <div class="card-table-cell"><?php echo $pelicula->getAnyo()?></div>
-                            <div class="card-table-cell"><?php echo $pelicula->getPais()?> Unidos</div>
+                            <div class="card-table-cell"><?php echo $pelicula->getPais()?></div>
                             <div class="card-table-cell">
                                 <?php
                                 $actores = getActorsFromMovie($pelicula);
@@ -131,7 +131,6 @@ if (!isset($_SESSION["user"]) && !isset($_SESSION["password"])) {
                         <?php
                     }
                     ?>
-
                 </div>
             </div>
         </div>
