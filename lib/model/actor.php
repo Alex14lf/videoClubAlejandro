@@ -1,15 +1,54 @@
-<?php
+<?php 
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/PHPClass.php to edit this template
- */
+    class Actor{
+        private $id;
+        private $nombre;
+        private $apellidos;
+        private $fotografia;
+        
+        public function __construct($id, $nombre, $apellidos, $fotografia) {
+            $this->id = $id;
+            $this->nombre = $nombre;
+            $this->apellidos = $apellidos;
+            $this->fotografia = $fotografia;
+        }
 
-/**
- * Description of actor
- *
- * @author alex1
- */
-class actor {
-    //put your code here
-}
+        public function getId() {
+            return $this->id;
+        }
+
+        public function getNombre() {
+            return $this->nombre;
+        }
+
+        public function getApellidos() {
+            return $this->apellidos;
+        }
+
+        public function getFotografia() {
+            return $this->fotografia;
+        }
+
+        public function setId($id): void {
+            $this->id = $id;
+        }
+
+        public function setNombre($nombre): void {
+            $this->nombre = $nombre;
+        }
+
+        public function setApellidos($apellidos): void {
+            $this->apellidos = $apellidos;
+        }
+
+        public function setFotografia($fotografia): void {
+            $this->fotografia = $fotografia;
+        }
+
+        public function __destruct() {
+
+        }
+
+    }
+
+?>

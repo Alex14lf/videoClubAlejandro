@@ -4,7 +4,7 @@ include("../lib/functions/functions.php");
 if (!isset($_SESSION["user"]) && !isset($_SESSION["password"])) {
     header("Location:../index.php");
 } else {
-    if ($_SESSION["rol"] == 0){
+    if ($_SESSION["rol"] == 0) {
         header("Location:users.php");
     }
 }
@@ -98,33 +98,40 @@ if (!isset($_SESSION["user"]) && !isset($_SESSION["password"])) {
                         <div class="card-table-cell">Reparto</div>
                         <div class="card-table-cell">Acciones</div>
                     </div>
-                    <!-- EJEMPLO A SUSTITUIR POR LA INFORMACION DE LA BD -->
-                    <div class="card-table-row">
-                        <div class="card-table-cell"><img src="./assets/images/1302402.jpg" alt="Cartel de la película" class="cartel-image"></div>
-                        <div class="card-table-cell">Título de la película</div>
-                        <div class="card-table-cell">Acción</div>
-                        <div class="card-table-cell">2023</div>
-                        <div class="card-table-cell">Estados Unidos</div>
-                        <div class="card-table-cell">
-                            <div class="d-inline-flex align-items-center">
-                                <img src="./assets/images/1302402.jpg" alt="Actor 1" class="actor-image">
-                                <p class="mx-2">Nombre del actor 1</p>
+                    <?php
+                    $peliculas = getMovies();
+                    foreach ($peliculas as $pelicula) {
+                        ?>
+                        <div class="card-table-row">
+                            <div class="card-table-cell"><img src="../assets/images/<?php echo $pelicula->getCartel()?>" alt="Cartel de la película" class="cartel-image"></div>
+                            <div class="card-table-cell"><?php echo $pelicula->getTitulo()?></div>
+                            <div class="card-table-cell"><?php echo $pelicula->getGenero()?></div>
+                            <div class="card-table-cell"><?php echo $pelicula->getAnyo()?></div>
+                            <div class="card-table-cell"><?php echo $pelicula->getPais()?> Unidos</div>
+                            <div class="card-table-cell">
+                                <?php
+                                $actores = getActorsFromMovie($pelicula);
+                                foreach ($actores as $actor) {
+                                    ?>
+                                    <div class="d-inline-flex align-items-center">
+                                        <img src="../assets/images/<?php echo $actor->getFotografia()?>" alt="Actor 1" class="actor-image">
+                                        <p class="mx-2"><?php echo $actor->getNombre() . " " . $actor->getApellidos(); ?></p>
+
+                                    </div>
+                                    <?php
+                                }
+                                ?>
+
                             </div>
-                            <div class="d-inline-flex align-items-center">
-                                <img src="./assets/images/1302402.jpg" alt="Actor 2" class="actor-image">
-                                <p class="mx-2">Nombre del actor 2</p>
-                            </div>
-                            <div class="d-inline-flex align-items-center">
-                                <img src="./assets/images/1302402.jpg" alt="Actor 3" class="actor-image">
-                                <p class="mx-2">Nombre del actor 3</p>
+                            <div class="card-table-cell">
+                                <button class="btn btn-danger">Eliminar</button>
+                                <button class="btn btn-warning mt-1">Modificar</button>
                             </div>
                         </div>
-                        <div class="card-table-cell">
-                            <button class="btn btn-danger">Eliminar</button>
-                            <button class="btn btn-warning mt-1">Modificar</button>
-                        </div>
-                    </div>
-                    <!-- FIN DEL EJEMPLO -->
+                        <?php
+                    }
+                    ?>
+
                 </div>
             </div>
         </div>
