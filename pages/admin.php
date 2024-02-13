@@ -29,7 +29,7 @@ if (!isset($_SESSION["user"]) && !isset($_SESSION["password"])) {
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link btn-cerrar-sesion" href="#">Cerrar sesión</a>
+                            <a class="nav-link btn-cerrar-sesion"style="color: white;" href="./closeSesion.php">Cerrar sesión</a>
                         </li>
                     </ul>
                 </div>
@@ -37,7 +37,7 @@ if (!isset($_SESSION["user"]) && !isset($_SESSION["password"])) {
         </nav>
 
         <div class="container mt-5">
-            <h1 class="text-center">¡Bienvenido!</h1> <!-- AÑADIR EL NOMBRE DE LA SESION -->
+            <h1 class="text-center">¡Bienvenido <?php echo $_SESSION["user"]?>!</h1> 
             <h2 class="text-center">Última visita: 2024-02-08</h2> <!-- AÑADIR LA COOKIE -->
             <!-- Agrega este botón donde quieras abrir el modal -->
             <button class="btn btn-primary mt-3 d-block mx-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir Pelicula</button>
@@ -51,30 +51,27 @@ if (!isset($_SESSION["user"]) && !isset($_SESSION["password"])) {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <!-- Aquí va el contenido del formulario -->
                         <form>
-                            <form>
-                                <div class="mb-3">
-                                    <label for="cartel" class="form-label">Cartel</label>
-                                    <input type="text" class="form-control" id="cartel" placeholder="Ingrese el cartel de la película">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="titulo" class="form-label">Título</label>
-                                    <input type="text" class="form-control" id="titulo" placeholder="Ingrese el título de la película">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="genero" class="form-label">Género</label>
-                                    <input type="text" class="form-control" id="genero" placeholder="Ingrese el género de la película">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="año" class="form-label">Año</label>
-                                    <input type="text" class="form-control" id="año" placeholder="Ingrese el año de la película">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="pais" class="form-label">País</label>
-                                    <input type="text" class="form-control" id="pais" placeholder="Ingrese el país de la película">
-                                </div>
-                            </form>
+                            <div class="mb-3">
+                                <label for="cartel" class="form-label">Cartel</label>
+                                <input type="text" class="form-control" id="cartel" placeholder="Ingrese el cartel de la película">
+                            </div>
+                            <div class="mb-3">
+                                <label for="titulo" class="form-label">Título</label>
+                                <input type="text" class="form-control" id="titulo" placeholder="Ingrese el título de la película">
+                            </div>
+                            <div class="mb-3">
+                                <label for="genero" class="form-label">Género</label>
+                                <input type="text" class="form-control" id="genero" placeholder="Ingrese el género de la película">
+                            </div>
+                            <div class="mb-3">
+                                <label for="año" class="form-label">Año</label>
+                                <input type="text" class="form-control" id="año" placeholder="Ingrese el año de la película">
+                            </div>
+                            <div class="mb-3">
+                                <label for="pais" class="form-label">País</label>
+                                <input type="text" class="form-control" id="pais" placeholder="Ingrese el país de la película">
+                            </div>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -103,18 +100,18 @@ if (!isset($_SESSION["user"]) && !isset($_SESSION["password"])) {
                     foreach ($peliculas as $pelicula) {
                         ?>
                         <div class="card-table-row">
-                            <div class="card-table-cell"><img src="../assets/images/<?php echo $pelicula->getCartel()?>" alt="Cartel de la película" class="cartel-image"></div>
-                            <div class="card-table-cell"><?php echo $pelicula->getTitulo()?></div>
-                            <div class="card-table-cell"><?php echo $pelicula->getGenero()?></div>
-                            <div class="card-table-cell"><?php echo $pelicula->getAnyo()?></div>
-                            <div class="card-table-cell"><?php echo $pelicula->getPais()?></div>
+                            <div class="card-table-cell"><img src="../assets/images/<?php echo $pelicula->getCartel() ?>" alt="Cartel de la película" class="cartel-image"></div>
+                            <div class="card-table-cell"><?php echo $pelicula->getTitulo() ?></div>
+                            <div class="card-table-cell"><?php echo $pelicula->getGenero() ?></div>
+                            <div class="card-table-cell"><?php echo $pelicula->getAnyo() ?></div>
+                            <div class="card-table-cell"><?php echo $pelicula->getPais() ?></div>
                             <div class="card-table-cell">
                                 <?php
                                 $actores = getActorsFromMovie($pelicula);
                                 foreach ($actores as $actor) {
                                     ?>
                                     <div class="d-inline-flex align-items-center">
-                                        <img src="../assets/images/<?php echo $actor->getFotografia()?>" alt="Actor 1" class="actor-image">
+                                        <img src="../assets/images/<?php echo $actor->getFotografia() ?>" alt="Actor 1" class="actor-image">
                                         <p class="mx-2"><?php echo $actor->getNombre() . " " . $actor->getApellidos(); ?></p>
 
                                     </div>
@@ -124,8 +121,68 @@ if (!isset($_SESSION["user"]) && !isset($_SESSION["password"])) {
 
                             </div>
                             <div class="card-table-cell">
-                                <button class="btn btn-danger">Eliminar</button>
-                                <button class="btn btn-warning mt-1">Modificar</button>
+                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarModal<?php echo $pelicula->getId() ?>">Eliminar</button>
+                                <!-- Modal de Eliminar -->
+                                <div class="modal fade" id="eliminarModal<?php echo $pelicula->getId() ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Eliminar Película</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                ¿Estás seguro que deseas eliminar esta película?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                <a class="btn btn-danger" href="./deleteMovie.php?id=<?php echo $pelicula->getId()?>" style="text-decoration: none; color: white;">Eliminar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-warning mt-1" data-bs-toggle="modal" data-bs-target="#modificarModal<?php echo $pelicula->getId() ?>">Modificar</button>
+
+                                <!-- Modal de Modificar -->
+                                <div class="modal fade" id="modificarModal<?php echo $pelicula->getId() ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Modificar Película</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="editMovie.php" method="post">
+                                                    <input type="hidden" name="id" value="<?php echo $pelicula->getId() ?>">
+                                                    <div class="mb-3">
+                                                        <label for="cartel" class="form-label">Cartel</label>
+                                                        <input type="text" class="form-control" id="cartel" name="cartel" value="<?php echo $pelicula->getCartel() ?>">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="titulo" class="form-label">Título</label>
+                                                        <input type="text" class="form-control" id="titulo" name="titulo" value="<?php echo $pelicula->getTitulo() ?>">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="genero" class="form-label">Género</label>
+                                                        <input type="text" class="form-control" id="genero" name="genero" value="<?php echo $pelicula->getGenero() ?>">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="año" class="form-label">Año</label>
+                                                        <input type="text" class="form-control" id="año" name="anyo" value="<?php echo $pelicula->getAnyo() ?>">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="pais" class="form-label">País</label>
+                                                        <input type="text" class="form-control" id="pais" name="pais" value="<?php echo $pelicula->getPais() ?>">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                        <button type="submit" class="btn btn-warning">Guardar Cambios</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <?php

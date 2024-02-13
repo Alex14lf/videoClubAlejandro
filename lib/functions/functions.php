@@ -103,5 +103,15 @@ function getActorsFromMovie($movie) {
         exit();
     }
 }
+function deleteMovie($id) {
+    try {
+        $bd = conectBd();
+        $consulta = $bd->prepare("DELETE FROM peliculas where id = :id");
+        $consulta->execute(array(":id" => $id));
+    } catch (Exception $exc) {
+        header('Location: ../pages/error404.php');
+        exit();
+    }
+}
 
 ?>
