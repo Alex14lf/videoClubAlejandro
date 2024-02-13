@@ -125,5 +125,15 @@ function addMovie($cartel, $titulo, $genero, $anyo, $pais) {
         exit();
     }
 }
+function editMovie($id,$cartel, $titulo, $genero, $anyo, $pais) {
+    try {
+        $bd = conectBd();
+        $consulta = $bd->prepare("UPDATE peliculas SET cartel = :cartel, titulo = :titulo, genero = :genero, anyo = :anyo, pais = :pais WHERE id = :id");
+        $consulta->execute(array(":id" => $id,":cartel" => $cartel,":titulo" => $titulo,":genero" => $genero,":anyo" => $anyo,":pais" => $pais));
+    } catch (Exception $exc) {
+        header('Location: ../pages/error404.php');
+        exit();
+    }
+}
 
 ?>
