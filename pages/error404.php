@@ -1,3 +1,9 @@
+<?php
+if (!isset($_SESSION["user"]) || !isset($_SESSION["password"])) {
+    header("Location:../index.php");
+    exit();
+} else {
+    ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -19,3 +25,6 @@
         </div>
     </body>
 </html>
+<?php
+}
+
