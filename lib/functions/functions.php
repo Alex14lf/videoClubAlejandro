@@ -103,11 +103,23 @@ function getActorsFromMovie($movie) {
         exit();
     }
 }
+
 function deleteMovie($id) {
     try {
         $bd = conectBd();
         $consulta = $bd->prepare("DELETE FROM peliculas where id = :id");
         $consulta->execute(array(":id" => $id));
+    } catch (Exception $exc) {
+        header('Location: ../pages/error404.php');
+        exit();
+    }
+}
+
+function addMovie($cartel, $titulo, $genero, $anyo, $pais) {
+    try {
+        $bd = conectBd();
+        $consulta = $bd->prepare("INSERT INTO peliculas (cartel, titulo, genero, anyo, pais) VALUES (:cartel, :titulo, :genero, :anyo, :pais)");
+        $consulta->execute(array(":cartel" => $cartel,":titulo" => $titulo,":genero" => $genero,":anyo" => $anyo,":pais" => $pais));
     } catch (Exception $exc) {
         header('Location: ../pages/error404.php');
         exit();

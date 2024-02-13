@@ -59,36 +59,50 @@ if (!isset($_SESSION["user"]) && !isset($_SESSION["password"])) {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form action="addMovie.php" method="post">
                             <div class="mb-3">
                                 <label for="cartel" class="form-label">Cartel</label>
-                                <input type="text" class="form-control" id="cartel" placeholder="Ingrese el cartel de la película">
+                                <input type="text" class="form-control" id="cartel" name="cartel" placeholder="Ingrese el cartel de la película">
                             </div>
                             <div class="mb-3">
                                 <label for="titulo" class="form-label">Título</label>
-                                <input type="text" class="form-control" id="titulo" placeholder="Ingrese el título de la película">
+                                <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Ingrese el título de la película">
                             </div>
                             <div class="mb-3">
                                 <label for="genero" class="form-label">Género</label>
-                                <input type="text" class="form-control" id="genero" placeholder="Ingrese el género de la película">
+                                <input type="text" class="form-control" id="genero" name="genero" placeholder="Ingrese el género de la película">
                             </div>
                             <div class="mb-3">
                                 <label for="año" class="form-label">Año</label>
-                                <input type="text" class="form-control" id="año" placeholder="Ingrese el año de la película">
+                                <input type="text" class="form-control" id="año" name="anyo" placeholder="Ingrese el año de la película">
                             </div>
                             <div class="mb-3">
                                 <label for="pais" class="form-label">País</label>
-                                <input type="text" class="form-control" id="pais" placeholder="Ingrese el país de la película">
+                                <input type="text" class="form-control" id="pais" name="pais" placeholder="Ingrese el país de la película">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Añadir</button>
                             </div>
                         </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Añadir</button>
-                    </div>
+
                 </div>
             </div>
         </div>
+        <?php
+        if (isset($_GET["error"]) && $_GET["error"] == "incompleto") {
+            ?>
+            <div class = "alert alert-danger alert-dismissible fade show" role = "alert" style = "margin-top: 20px;">
+                No has introducido todos los datos para añadir una película, por favor vuelve a intentarlo.
+                <button type = "button" class = "btn-close" data-bs-dismiss = "alert" aria-label = "Close"></button>
+            </div>
+            <?php
+        }
+        ?>
+
+
+
 
         <div class="container mt-5">
             <h3 class="text-center mb-4">Películas</h3>
@@ -108,7 +122,7 @@ if (!isset($_SESSION["user"]) && !isset($_SESSION["password"])) {
                     foreach ($peliculas as $pelicula) {
                         ?>
                         <div class="card-table-row">
-                            <div class="card-table-cell"><img src="../assets/images/<?php echo $pelicula->getCartel() ?>" alt="Cartel de la película" class="cartel-image"></div>
+                            <div class="card-table-cell"><img src="../assets/images/<?php echo $pelicula->getCartel() ?>" class="cartel-image"></div>
                             <div class="card-table-cell"><?php echo $pelicula->getTitulo() ?></div>
                             <div class="card-table-cell"><?php echo $pelicula->getGenero() ?></div>
                             <div class="card-table-cell"><?php echo $pelicula->getAnyo() ?></div>

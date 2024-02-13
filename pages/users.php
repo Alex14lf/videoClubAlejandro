@@ -77,7 +77,6 @@ if (!isset($_SESSION["user"]) && !isset($_SESSION["password"])) {
                                     <div class="d-inline-flex align-items-center">
                                         <img src="../assets/images/<?php echo $actor->getFotografia() ?>" alt="Actor 1" class="actor-image">
                                         <p class="mx-2"><?php echo $actor->getNombre() . " " . $actor->getApellidos(); ?></p>
-
                                     </div>
                                     <?php
                                 }
