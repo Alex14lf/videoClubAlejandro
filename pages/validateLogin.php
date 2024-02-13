@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 include '../lib/functions/functions.php';
 
@@ -16,8 +17,10 @@ if (!$passwordIntroducida || !$usuarioIntroducido) {
 }
 
 if (checkUser($user, $password)) {
+    $lastAccess = date("d-m-Y H:i:s");
+    setcookie("lastAccess", $lastAccess, 0, "/");
     $userObject = createUserObject($user);
-    $rol=$userObject->getRol();
+    $rol = $userObject->getRol();
     $_SESSION["user"] = $user;
     $_SESSION["password"] = $password;
     $_SESSION["rol"] = $rol;

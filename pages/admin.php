@@ -37,8 +37,16 @@ if (!isset($_SESSION["user"]) && !isset($_SESSION["password"])) {
         </nav>
 
         <div class="container mt-5">
-            <h1 class="text-center">¡Bienvenido <?php echo $_SESSION["user"]?>!</h1> 
-            <h2 class="text-center">Última visita: 2024-02-08</h2> <!-- AÑADIR LA COOKIE -->
+            <h1 class="text-center">¡Bienvenido <?php echo $_SESSION["user"] ?>!</h1> 
+            <?php
+            // Leer la cookie de la última fecha de acceso
+            if (isset($_COOKIE["lastAccess"])) {
+                $lastAccess = $_COOKIE["lastAccess"];
+                echo "<h2 class='text-center'>Última visita: $lastAccess</h2>";
+            } else {
+                echo "<h2 class='text-center'>No se ha establecido la última fecha de acceso.</h2>";
+            }
+            ?>
             <!-- Agrega este botón donde quieras abrir el modal -->
             <button class="btn btn-primary mt-3 d-block mx-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir Pelicula</button>
         </div>
@@ -135,7 +143,7 @@ if (!isset($_SESSION["user"]) && !isset($_SESSION["password"])) {
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                <a class="btn btn-danger" href="./deleteMovie.php?id=<?php echo $pelicula->getId()?>" style="text-decoration: none; color: white;">Eliminar</a>
+                                                <a class="btn btn-danger" href="./deleteMovie.php?id=<?php echo $pelicula->getId() ?>" style="text-decoration: none; color: white;">Eliminar</a>
                                             </div>
                                         </div>
                                     </div>

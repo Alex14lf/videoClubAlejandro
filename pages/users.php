@@ -37,7 +37,14 @@ if (!isset($_SESSION["user"]) && !isset($_SESSION["password"])) {
 
         <div class="container mt-5">
             <h1 class="text-center">¡Bienvenido <?php echo $_SESSION["user"] ?>!</h1> 
-            <h2 class="text-center">Última visita: 2024-02-08</h2> <!-- AÑADIR LA COOKIE -->
+            <?php
+            if (isset($_COOKIE["lastAccess"])) {
+                $lastAccess = $_COOKIE["lastAccess"];
+                echo "<h2 class='text-center'>Última visita: $lastAccess</h2>";
+            } else {
+                echo "<h2 class='text-center'>No se ha establecido la última fecha de acceso.</h2>";
+            }
+            ?>
         </div>
 
         <div class="container mt-5">
